@@ -1,0 +1,108 @@
+HASHING
+Hashing merupakan teknik yang sering digunakan dalam pemrograman pada umumnya. Untuk pemrograman kompetitif, hashing dapat membantu menyelesaikan persoalan secara tidak terduga (cepat) dengan menggunakan kunci hash.
+Hash Value=Key mod (n+1)  
+hashing dapat memecahkan : 
+1. Linear Probbing: kami melihat secara berurutan, slot demi slot, hingga kami menemukan posisi terbuka.
+2. Kuadrat probing: Ini berarti bahwa jika nilai hash pertama adalah h, nilai berturut-turut adalah h + 1, h + 4, h + 9, h + 16. begitu seterusnya.
+
+contoh:
+Linear probbing:[77, 44, 55, 20, 26, 93, 17, 25, None, 31, 54]
+table = [None] * 11
+
+def hash(x):
+  return x % 11
+
+def insert(table,key,value):
+  index = hash(key)
+if table[index] == None:
+    table[index] = value
+  else :
+    collusion=index
+
+    found = False
+    ind=collusion+1
+    if ind>= len(table)-1:
+        ind = 0
+    while (ind<=len(table)-1) and not(found):
+        if table[ind]== None:
+            found=True
+            table[ind]=value
+       ind=ind+1
+
+print(table)
+insert(table,54,54)
+print(table)
+insert(table,26,26)
+print(table)
+insert(table,93,93)
+print(table)
+insert(table,17,17)
+print(table)
+insert(table,77,77)
+print(table)
+insert(table,31,31)
+print(table)
+insert(table,44,44)
+print(table)
+insert(table,55,55)
+print(table)
+insert(table,20,20)
+print(table)
+insert(table,25,25)
+print(table)
+
+Quadratic: ['77', '44', '20', '55', 26, '93', '17', None, None, '31', 54]
+table = [None] * 11
+def hash(x):
+  return x % 11
+
+
+def insert(table,key,value):
+  index = hash(key)
+  if table[index] == None:
+    table[index] = value
+  else:
+    collusion=index
+    found = False
+    i=1
+    ind = collusion+1
+
+    if ind > len(table)-1:
+        ind = 0
+
+    while (ind<=len(table)-1) and not(found):
+      if table[ind]== None:
+        found=True
+        table[ind]=value
+        ind = (collusion+(i*i)) % 11
+      i=i+1
+
+print(table)
+insert(table,54,54)
+print(table)
+insert(table,26,26)
+print(table)
+insert(table,93,'93')
+print(table)
+insert(table,17,'17')
+print(table)
+insert(table,77,'77')
+print(table)
+insert(table,31,'31')
+print(table)
+insert(table,44,'44')
+print(table)
+insert(table,55,'55')
+print(table)
+insert(table,20,'20')
+print(table)
+
+Chaining = memungkinkan banyak item ada di lokasi yang sama di tabel hash. Ketika tabrakan terjadi, item tersebut masih ditempatkan di slot yang tepat dari tabel hash
+contoh :
+[[77, 44, 55], [], [], [], [26], [93], [17], [], [], [31, 20], [54]]
+
+table = [ [] for _ in range(11)]
+def hash(x):
+  return x % 11
+def insert(table,key,value):
+  table[hash(key)].append(value)

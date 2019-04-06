@@ -1,0 +1,48 @@
+SEARCHING
+Metode Searching :
+1. Sequential Search (Linier Search)
+Sequential search adalah metode pencarian data yang prosesnya dilakukan dengan membandingkan data yang dicari dengan masing-masing data di dalam suatu data bertipe sama (array). Pencarian dilakukan dari awal sampai akhir dari data berdasarkan kunci (key) yang dicari. Pencarian akan berhenti jika data telah ditemukan atau tidak ada lagi data yang dibandingkan. Metode sequential search dapat digunakan untuk melakukan pencarian data baik pada array yang sudah terurut maupun belum terurut (acak).
+Contoh : 
+
+search = 7
+a = [8,5,7,9,2]
+position = len(a)-1 
+last = 0
+found = false
+while position <= last and not found : 
+    if a[position] == search:
+        found = True
+    else: 
+        position = position-1
+if found:
+    print("Found search number")
+    print("position")
+else:
+    print("Did not find the search number")
+  
+    
+Sedangkan, 
+2. Binary Search
+Binary search merupakan sebuah proses pencarian data yang sudah terurut, baik dari kecil ke besar maupun dari besar ke kecil.
+Contoh :
+search = 1
+myList = [3, 1, 4, 4, 5, 6]
+myList.sort()
+first = 0
+last = len(myList)-1
+found = False
+
+while first <= last and not found:
+  middle = (first + last) // 2
+  if myList[middle] == search:
+     found = True
+  else:
+    if search < myList[middle] :
+      last = middle - 1
+    else:
+      first = middle +1
+if found:
+    print("Found the search number.")
+    print(middle)
+else:
+    print("Did not find the search number.")
